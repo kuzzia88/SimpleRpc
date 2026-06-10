@@ -47,42 +47,43 @@ export default function RpcInput({ setIsActive, showMessage }: RpcInputProps) {
     sBtnUrl: ""
   });
 
-  const isActiveChecked = form.applicationId.trim() !== ""
-    const isApplicationIdValid = /^\d{17,20}$/.test(form.applicationId.trim());
-    const isDetailsValid = form.details.trim().length <= 128;
-    const isStateValid = form.state.trim().length <= 128;
-    const isImageTextValid = form.imageText.trim().length <= 128;
+  const isActiveChecked = 
+    form.applicationId.trim() !== "" &&
+    form.details.trim() !== "" &&
+    form.state.trim() !== ""
+  const isApplicationIdValid = /^\d{17,20}$/.test(form.applicationId.trim());
+  const isDetailsValid = form.details.trim().length <= 128;
+  const isStateValid = form.state.trim().length <= 128;
+  const isImageTextValid = form.imageText.trim().length <= 128;
 
-    const isFirstButtonEmpty =
-      form.fBtnLabel.trim() === "" &&
-      form.fBtnUrl.trim() === "";
+  const isFirstButtonEmpty =
+    form.fBtnLabel.trim() === "" &&
+    form.fBtnUrl.trim() === "";
 
-    const isFirstButtonValid =
-      isFirstButtonEmpty ||
-      (
-        form.fBtnLabel.trim().length > 0 &&
-        form.fBtnLabel.trim().length <= 32 &&
-        /^https:\/\//.test(form.fBtnUrl.trim())
-      );
+  const isFirstButtonValid =
+    isFirstButtonEmpty ||
+    (
+      form.fBtnLabel.trim().length > 0 &&
+      form.fBtnLabel.trim().length <= 32 
+    );
 
-    const isSecondButtonEmpty =
-      form.sBtnLabel.trim() === "" &&
-      form.sBtnUrl.trim() === "";
+  const isSecondButtonEmpty =
+    form.sBtnLabel.trim() === "" &&
+    form.sBtnUrl.trim() === "";
 
-    const isSecondButtonValid =
-      isSecondButtonEmpty ||
-      (
-        form.sBtnLabel.trim().length > 0 &&
-        form.sBtnLabel.trim().length <= 32 &&
-        /^https:\/\//.test(form.sBtnUrl.trim())
-      );
+  const isSecondButtonValid =
+    isSecondButtonEmpty ||
+    (
+      form.sBtnLabel.trim().length > 0 &&
+      form.sBtnLabel.trim().length <= 32
+    );
 
-    const isActiveReady =
-      isApplicationIdValid &&
-      (isDetailsValid || isStateValid) &&
-      isImageTextValid &&
-      isFirstButtonValid &&
-      isSecondButtonValid;
+  const isActiveReady =
+    isApplicationIdValid &&
+    (isDetailsValid || isStateValid) &&
+    isImageTextValid &&
+    isFirstButtonValid &&
+    isSecondButtonValid;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setForm((prev) => ({
@@ -91,16 +92,11 @@ export default function RpcInput({ setIsActive, showMessage }: RpcInputProps) {
     }));
   };
 
-  // const showMessage = (title: string, text: string, type: Message["type"] = "info") => {
-  //   setMessages([{ id: Date.now().toString(), title, text, type }]);
-  //   setTimeout(() => setMessages([]), 3000);
-  // };
-
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (isActiveReady) {
       console.log(form);
+      await window.desktop.startRpc(form);
       showMessage("Success", "Data verified", "success");
-      // setTimeout(() => setIsActive(true), 1000);
       setIsActive(true);
     } else {
       showMessage("Error", "The data was entered incorrectly!", "error");
@@ -133,20 +129,10 @@ return (
       <p>Ключ большой картинки</p>
     </div>
 
-    {/* <div className={styles.rpc_input}>
-      <input type="text" className={styles.rpc_input_inner} placeholder="Large Image Text" />
-      <p>РўРµРєСЃС‚ РїСЂРё РЅР°РІРµРґРµРЅРёРё</p>
-    </div> */}
-
     <div className={styles.rpc_input}>
       <input type="text" className={styles.rpc_input_inner} placeholder="Small Image Key" name="smallImageKey" value={form.smallImageKey} onChange={handleChange} />
       <p>Ключ маленькой картинки</p>
     </div>
-
-    {/* <div className={styles.rpc_input}>
-      <input type="text" className={styles.rpc_input_inner} placeholder="Small Image Text" />
-      <p>РўРµРєСЃС‚ РїСЂРё РЅР°РІРµРґРµРЅРёРё</p>
-    </div> */}
 
     <div className={styles.rpc_input}>
       <input type="text" className={styles.rpc_input_inner} placeholder="Image Text" name="imageText" value={form.imageText} onChange={handleChange} />
