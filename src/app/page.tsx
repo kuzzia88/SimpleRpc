@@ -2,6 +2,7 @@
 
 import RpcInput from "./components/rpcInputs/rpcInput";
 import TitleBar from "./components/titleBar/titleBar";
+import Active from "./components/active/active";
 import styles from "./page.module.css";
 import Messages, { type Message } from "./components/messages/messages";
 import { useEffect, useState } from "react";
@@ -58,7 +59,7 @@ export default function Home() {
       {!isActive ? (
         <RpcInput setIsActive={setIsActive} showMessage={showMessage}/>
       ) : (
-        <div></div>
+        <Active setIsActive={setIsActive}/>
       )}
 
       {isOpen && (

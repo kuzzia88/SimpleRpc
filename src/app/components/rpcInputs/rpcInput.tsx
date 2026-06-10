@@ -97,6 +97,7 @@ export default function RpcInput({ setIsActive, showMessage }: RpcInputProps) {
       console.log(form);
       await window.desktop.startRpc(form);
       showMessage("Success", "Data verified", "success");
+      sessionStorage.setItem('appID', form.applicationId)
       setIsActive(true);
     } else {
       showMessage("Error", "The data was entered incorrectly!", "error");

@@ -1,7 +1,7 @@
 const { app, BrowserWindow, shell, ipcMain } = require("electron");
 const path = require("path");
 const url = require("url");
-const { startRpc } = require("./rpc");
+const { startRpc, stopRpc } = require("./rpc");
 
 const isDev = process.env.NODE_ENV === "development";
 const devServerUrl = process.env.NEXT_DEV_SERVER_URL || "http://localhost:3001";
@@ -46,6 +46,20 @@ ipcMain.handle("app:get-versions", () => ({
 ipcMain.handle("rpc:start", async (_event, data) => {
   await startRpc(data);
   return { ok: true };
+});
+
+ipcMain.handle("rpc:stop", async (_event) => {
+  await stopRpc();
+  return { ok: true };
+});
+
+ipcMain.handle("close-app", async (_event) => {
+  app.quit();
+});
+
+ipcMain.handle("minimize-app", async (event) => {
+  const win = BrowserWindow.fromWebContents(event.sender);
+  win?.minimize();
 });
 
 app.whenReady().then(() => {

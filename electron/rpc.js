@@ -43,7 +43,11 @@ async function startRpc(data) {
   });
 }
 
-module.exports = { startRpc };
+async function stopRpc() {
+  rpc.clearActivity();
+}
+
+module.exports = { startRpc, stopRpc };
 
 // const clientId = process.env.DISCORD_CLIENT_ID;
 // const rpc = new RPC.Client({ transport: "ipc" });
