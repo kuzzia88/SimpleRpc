@@ -1,7 +1,8 @@
 const { app, BrowserWindow, shell, ipcMain } = require("electron");
 const path = require("path");
 const url = require("url");
-require("../rpc");
+// require("../rpc");
+require("./rpc");
 
 const isDev = process.env.NODE_ENV === "development";
 const devServerUrl = process.env.NEXT_DEV_SERVER_URL || "http://localhost:3001";
