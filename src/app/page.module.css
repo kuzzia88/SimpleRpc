@@ -1,0 +1,227 @@
+
+.page {
+  /* background-color: #252525; */
+  background-color: rgba(20, 20, 20, 0.4);
+  min-height: 100vh;
+}
+
+.white_line {
+  width: 70%;
+  height: 3px;
+  border-radius: 15px;
+  background: aliceblue;
+  /* margin-top: 20px; */
+  margin-bottom: 20px;
+}
+
+.cfg {
+  /* padding: 5px; */
+  font-size: 1.5rem;
+  /* border: 2px solid #848484; */
+  border: none;
+  border-radius: 5px;
+  background: none;
+  cursor: pointer;
+  position: fixed;
+  top: 35px;
+  right: 7.5px;
+}
+
+.cfg i {
+  transform-origin: center;
+  transition: 0.35s ease;
+}
+
+.cfg i:hover {
+  transform: rotate(-45deg) translate(-1px) scale(1.05);
+}
+
+.cfg i:active {
+  transform: translate(0px) scale(1);
+}
+
+.cfgDiv {
+  position: fixed;
+  width: 90%;
+  height: 95%;
+  background-color: aliceblue;
+  justify-self: center;
+  border-radius: 5px;
+  backdrop-filter: blur(10px);
+
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.glass {
+  background: rgba(20, 20, 20, 0.4);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.closeBtn {
+  position: fixed;
+  background: none;
+  border: none;
+
+  top: 2.5px;
+  right: 0.01px;
+
+  font-size: 2.5rem;
+  cursor: pointer;
+  /* color: #ff6b6b;
+  text-shadow:
+    0 0 12px rgba(255, 60, 60, 0.35),
+    inset 0 0 10px rgba(255, 60, 60, 0.12); */
+}
+
+.closeBtn i {
+  color: #ff6b6b;
+  text-shadow:
+    0 0 12px rgba(255, 60, 60, 0.35),
+    inset 0 0 10px rgba(255, 60, 60, 0.12);
+
+  transform-origin: center;
+  transition: 0.35s ease;
+}
+
+.closeBtn i:hover {
+  transform: rotate(-15deg) translate(-1px) scale(1.05);
+}
+
+.closeBtn i:active {
+  transform: translate(0px) scale(1);
+}
+
+.rpc_input {
+  display: flex;
+  flex-direction: column;
+}
+
+.rpc_inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 4vh;
+  padding-bottom: 2vh;
+}
+
+.rpc_input_inner {
+  /* background: rgba(20, 20, 20, 0.4); */
+  background: rgba(20, 20, 20);
+  border: 2px solid #2a2a2a;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.rpc_input p {
+  color: #bcb9b9;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.rpc_btn_div {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rpc_btn_group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.rpc_btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  background: #1e1e1e;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    border-radius 0.25s ease;
+}
+
+.rpc_btn_open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.rpc_btn_content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-height: 0;
+  padding: 0 10px;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-6px);
+  background: #2a2a2a;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0 0 8px 8px;
+  transition:
+    max-height 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    padding 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.25s ease,
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.rpc_btn_content_open {
+  max-height: 140px;
+  padding: 10px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rpc_btn_content input {
+  width: 100%;
+  background: rgba(20, 20, 20);
+  border: 2px solid #2a2a2a;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.rpc_btn * {
+  font-size: 1.25rem;
+}
+
+.rpc_btn label {
+  cursor: pointer;
+}
+
+.rpc_btn i {
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.activeBtn {
+  background: none;
+  width: 30%;
+  border: 2px solid #2a2a2a;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 1.25rem;
+  cursor: pointer;
+  margin-top: 2vh;
+}
+
+.activeBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

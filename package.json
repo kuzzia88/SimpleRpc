@@ -1,0 +1,49 @@
+{
+  "name": "simple-rpc",
+  "version": "0.1.0",
+  "private": true,
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "concurrently -k -n NEXT,ELECTRON -c blue,magenta \"npm:dev:next\" \"npm:dev:electron\"",
+    "dev:next": "next dev -p 3001",
+    "dev:electron": "wait-on tcp:3001 && cross-env NODE_ENV=development NEXT_DEV_SERVER_URL=http://localhost:3001 electron .",
+    "build": "next build",
+    "build:app": "npm run build && electron-builder",
+    "lint": "eslint ."
+  },
+  "build": {
+    "appId": "com.simplerpc.app",
+    "productName": "SimpleRpc",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "files": [
+      "electron/**/*",
+      "out/**/*",
+      "rpc.js",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    }
+  },
+  "dependencies": {
+    "discord-rpc": "^4.0.1",
+    "next": "^16.2.7",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.2",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "concurrently": "^10.0.3",
+    "cross-env": "^10.1.0",
+    "electron": "^42.4.0",
+    "electron-builder": "^26.15.2",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.7",
+    "typescript": "^6.0.3",
+    "wait-on": "^9.0.10"
+  }
+}
