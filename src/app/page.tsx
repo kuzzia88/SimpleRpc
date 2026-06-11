@@ -11,7 +11,7 @@ export default function Home() {
   const [isActive, setIsActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
-  
+
   const showMessage = (
     title: string,
     text: string,
@@ -52,7 +52,7 @@ export default function Home() {
     <div className={styles.page}>
       <TitleBar/>
 
-    <Messages messages={messages} />
+      <Messages messages={messages} />
 
       <button type="button" className={styles.cfg} onClick={() => setIsOpen(true)}><i className='bx bx-cog'></i></button>
 
@@ -67,7 +67,6 @@ export default function Home() {
           <button type="button" className={styles.closeBtn} onClick={() => setIsOpen(false)}><i className='bx bx-x'></i></button>
         </div>
       )}
-
     </div>
   );
 }

@@ -1,7 +1,8 @@
 {
   "name": "simple-rpc",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "license": "MIT",
   "main": "electron/main.js",
   "scripts": {
     "dev": "concurrently -k -n NEXT,ELECTRON -c blue,magenta \"npm:dev:next\" \"npm:dev:electron\"",
@@ -9,6 +10,9 @@
     "dev:electron": "wait-on tcp:3001 && cross-env NODE_ENV=development NEXT_DEV_SERVER_URL=http://localhost:3001 electron .",
     "build": "next build",
     "build:app": "npm run build && electron-builder",
+    "build:win": "npm run build && electron-builder --win",
+    "build:linux": "npm run build && electron-builder --linux",
+    "build:mac": "npm run build && electron-builder --mac",
     "lint": "eslint ."
   },
   "build": {
@@ -20,11 +24,26 @@
     "files": [
       "electron/**/*",
       "out/**/*",
-      "rpc.js",
+      "icon.png",
       "package.json"
     ],
+    "icon": "icon.png",
     "win": {
       "target": "nsis"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Utility"
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.utilities"
     }
   },
   "dependencies": {

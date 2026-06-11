@@ -22,7 +22,6 @@
 
 .active label {
   font-size: 2rem;
-  /* line-height: 0.1; */
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -47,7 +46,6 @@
   height: 3px;
   border-radius: 15px;
   background: rgba(90, 91, 91, 0.491);
-  /* margin-top: 20px; */
   margin-bottom: 20px;
 }
 

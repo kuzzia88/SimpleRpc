@@ -41,7 +41,7 @@ return (
         {iconUrl ? (
           <img src={iconUrl} className={styles.img} alt={app?.name} width={180} height={180} />
         ) : (
-          <p>Иконка не найдена</p>
+          <p>Icon not found</p>
         )}
         <canvas className={styles.white_line}></canvas>
         <label>{app?.name}</label>

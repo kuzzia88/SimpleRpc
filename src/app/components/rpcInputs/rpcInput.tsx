@@ -94,11 +94,17 @@ export default function RpcInput({ setIsActive, showMessage }: RpcInputProps) {
 
   const handleSubmit = async () => {
     if (isActiveReady) {
-      console.log(form);
-      await window.desktop.startRpc(form);
-      showMessage("Success", "Data verified", "success");
-      sessionStorage.setItem('appID', form.applicationId)
-      setIsActive(true);
+      try {
+        await window.desktop.startRpc(form);
+        showMessage("Success", "Data verified", "success");
+        sessionStorage.setItem('appID', form.applicationId)
+        setIsActive(true);
+      } catch (err) {
+        const message = err instanceof Error ? err.message : String(err);
+        if (message.includes("connection closed")) {
+          showMessage("Error", "Invalid Application ID", "error");
+        }
+      }
     } else {
       showMessage("Error", "The data was entered incorrectly!", "error");
     }
@@ -112,32 +118,32 @@ return (
 
     <div className={styles.rpc_input}>
       <input type="text" className={styles.rpc_input_inner} placeholder="Application ID" name="applicationId" value={form.applicationId} onChange={handleChange} />
-      <p>ID приложения</p>
+      <p>Application ID</p>
     </div>
 
     <div className={styles.rpc_input}>
       <input type="text" className={styles.rpc_input_inner} placeholder="Details" name="details" value={form.details} onChange={handleChange} />
-      <p>Первая строка статуса</p>
+      <p>First status line</p>
     </div>
 
     <div className={styles.rpc_input}>
       <input type="text" className={styles.rpc_input_inner} placeholder="State" name="state" value={form.state} onChange={handleChange} />
-      <p>Вторая строка статуса</p>
+      <p>Second status line</p>
     </div>
 
     <div className={styles.rpc_input}>
       <input type="text" className={styles.rpc_input_inner} placeholder="Large Image Key" name="largeImageKey" value={form.largeImageKey} onChange={handleChange} />
-      <p>Ключ большой картинки</p>
+      <p>Large image key</p>
     </div>
 
     <div className={styles.rpc_input}>
       <input type="text" className={styles.rpc_input_inner} placeholder="Small Image Key" name="smallImageKey" value={form.smallImageKey} onChange={handleChange} />
-      <p>Ключ маленькой картинки</p>
+      <p>Small image key</p>
     </div>
 
     <div className={styles.rpc_input}>
       <input type="text" className={styles.rpc_input_inner} placeholder="Image Text" name="imageText" value={form.imageText} onChange={handleChange} />
-      <p>Текст при наведении</p>
+      <p>Hover text</p>
     </div>
 
     <div className={styles.rpc_btn_div}>

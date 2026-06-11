@@ -12,8 +12,6 @@ rpc.on("ready", () => {
     state: "index.js works",
     startTimestamp: Date.now()
   });
-
-  console.log("RPC started");
 });
 
 rpc.login({ clientId });

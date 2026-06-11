@@ -1,15 +1,12 @@
 .messageContainer {
   position: fixed;
   top: 40px;
-  /* right: 40px; */
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  
-
 }
 
 .messageBox {
@@ -119,30 +116,6 @@
 .infoProgress::after {
   background-color: #2196f3;
 }
-
-/* @keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(100px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideOut {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  to {
-    opacity: 0;
-    transform: translateX(100px);
-  }
-} */
 
 @keyframes slideIn {
   from {

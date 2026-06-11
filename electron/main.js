@@ -5,6 +5,7 @@ const { startRpc, stopRpc } = require("./rpc");
 
 const isDev = process.env.NODE_ENV === "development";
 const devServerUrl = process.env.NEXT_DEV_SERVER_URL || "http://localhost:3001";
+const iconPath = path.join(__dirname, "..", "icon.png");
 
 function getProductionUrl() {
   return url.pathToFileURL(path.join(__dirname, "..", "out", "index.html")).toString();
@@ -15,6 +16,7 @@ function createWindow() {
     width: 580,
     height: 780,
     title: "SimpleRpc",
+    icon: iconPath,
     frame: false,
     hasShadow: true,
     resizable: false,
