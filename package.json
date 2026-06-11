@@ -10,8 +10,8 @@
     "dev:electron": "wait-on tcp:3001 && cross-env NODE_ENV=development NEXT_DEV_SERVER_URL=http://localhost:3001 electron .",
     "build": "next build",
     "build:app": "npm run build && electron-builder",
-    "build:win": "npm run build && electron-builder --win",
-    "build:linux": "npm run build && electron-builder --linux",
+    "build:win": "npm run build && electron-builder --win && node -e \"require('fs').rmSync('dist-electron/win-unpacked',{recursive:true,force:true})\"",
+    "build:linux": "npm run build && electron-builder --linux && node -e \"require('fs').rmSync('dist-electron/linux-unpacked',{recursive:true,force:true})\"",
     "build:mac": "npm run build && electron-builder --mac",
     "lint": "eslint ."
   },
@@ -24,19 +24,22 @@
     "files": [
       "electron/**/*",
       "out/**/*",
+      "icon.ico",
       "icon.png",
       "package.json"
     ],
     "icon": "icon.png",
     "win": {
-      "target": "nsis"
+      "icon": "build/icon.ico",
+      "target": "portable",
+      "artifactName": "SimpleRpc.exe"
     },
     "linux": {
       "target": [
-        "AppImage",
-        "deb"
+        "zip"
       ],
-      "category": "Utility"
+      "category": "Utility",
+      "maintainer": "SimpleRpc <noreply@example.com>"
     },
     "mac": {
       "target": [

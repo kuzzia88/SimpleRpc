@@ -5,7 +5,9 @@ const { startRpc, stopRpc } = require("./rpc");
 
 const isDev = process.env.NODE_ENV === "development";
 const devServerUrl = process.env.NEXT_DEV_SERVER_URL || "http://localhost:3001";
-const iconPath = path.join(__dirname, "..", "icon.png");
+const iconPath = path.join(__dirname, "..", process.platform === "win32" ? "icon.ico" : "icon.png");
+
+app.commandLine.appendSwitch("disable-logging");
 
 function getProductionUrl() {
   return url.pathToFileURL(path.join(__dirname, "..", "out", "index.html")).toString();
