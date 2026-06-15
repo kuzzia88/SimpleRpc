@@ -44,7 +44,7 @@ The project is built with **Next.js + React + Electron**. The UI runs in Next.js
 ### Installation
 
 ```bash
-git clone https://github.com/<your-name>/SimpleRpc.git
+git clone https://github.com/kuzzia88/SimpleRpc.git
 cd SimpleRpc
 npm install
 ```
